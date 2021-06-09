@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Hoofdstuk10 Plaatjes | Introductiecursus R</title>
+  <meta name="description" content="Introductie R." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Hoofdstuk10 Plaatjes | Introductiecursus R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Introductie R." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Hoofdstuk10 Plaatjes | Introductiecursus R" />
+  
+  <meta name="twitter:description" content="Introductie R." />
+  
+
+<meta name="author" content="Sten Willemsen" />
+
+
+<meta name="date" content="2021-06-09" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="standaard-statistische-toetsen-voor-continue-data.html"/>
+<link rel="next" href="overzicht-functies.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R Course</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Voorwoord</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introductie</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#waarom-r"><i class="fa fa-check"></i><b>2.1</b> Waarom R</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#installatie-van-r-en-rstudio"><i class="fa fa-check"></i><b>2.2</b> Installatie van R en RStudio</a></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#interface-van-rstudio"><i class="fa fa-check"></i><b>2.3</b> Interface van RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Basis van R</a><ul>
+<li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#r-als-rekenmachine"><i class="fa fa-check"></i><b>3.1</b> R als rekenmachine</a></li>
+<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#variabelen"><i class="fa fa-check"></i><b>3.2</b> Variabelen</a></li>
+<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#library-en-packages"><i class="fa fa-check"></i><b>3.3</b> library en packages</a></li>
+<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#documentatie"><i class="fa fa-check"></i><b>3.4</b> Documentatie</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>4</b> Een data bestand</a><ul>
+<li class="chapter" data-level="4.1" data-path="data.html"><a href="data.html#inlezen-van-een-bestand"><i class="fa fa-check"></i><b>4.1</b> Inlezen van een bestand</a></li>
+<li class="chapter" data-level="4.2" data-path="data.html"><a href="data.html#data.frames"><i class="fa fa-check"></i><b>4.2</b> data.frames</a></li>
+<li class="chapter" data-level="4.3" data-path="data.html"><a href="data.html#vectoren-en-datatypen"><i class="fa fa-check"></i><b>4.3</b> vectoren en datatypen</a></li>
+<li class="chapter" data-level="4.4" data-path="data.html"><a href="data.html#lists"><i class="fa fa-check"></i><b>4.4</b> lists</a></li>
+<li class="chapter" data-level="4.5" data-path="data.html"><a href="data.html#factors"><i class="fa fa-check"></i><b>4.5</b> factors</a></li>
+<li class="chapter" data-level="4.6" data-path="data.html"><a href="data.html#missende-waarden"><i class="fa fa-check"></i><b>4.6</b> Missende waarden</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="subsetting.html"><a href="subsetting.html"><i class="fa fa-check"></i><b>5</b> Selecties</a><ul>
+<li class="chapter" data-level="5.1" data-path="subsetting.html"><a href="subsetting.html#indexeren-in-een-vector"><i class="fa fa-check"></i><b>5.1</b> Indexeren in een vector</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="subsetting.html"><a href="subsetting.html#selecties-maken-gebaseerd-op-positie-in-een-vector"><i class="fa fa-check"></i><b>5.1.1</b> Selecties maken gebaseerd op positie in een vector</a></li>
+<li class="chapter" data-level="5.1.2" data-path="subsetting.html"><a href="subsetting.html#selecties-maken-gebaseerd-op-een-conditie-waaronwaar"><i class="fa fa-check"></i><b>5.1.2</b> Selecties maken gebaseerd op een conditie (waar/onwaar)</a></li>
+<li class="chapter" data-level="5.1.3" data-path="subsetting.html"><a href="subsetting.html#selecties-maken-met-een-naam"><i class="fa fa-check"></i><b>5.1.3</b> Selecties maken met een naam</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="subsetting.html"><a href="subsetting.html#selecteren-van-variabelen-en-observaties-in-een-data.frame"><i class="fa fa-check"></i><b>5.2</b> Selecteren van variabelen en observaties in een <code>data.frame</code></a><ul>
+<li class="chapter" data-level="5.2.1" data-path="subsetting.html"><a href="subsetting.html#dubelle-haken-en-het-dollarteken"><i class="fa fa-check"></i><b>5.2.1</b> Dubelle haken en het dollarteken</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="subsetting.html"><a href="subsetting.html#selecties-maken-in-een-list"><i class="fa fa-check"></i><b>5.3</b> Selecties maken in een list</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="functies.html"><a href="functies.html"><i class="fa fa-check"></i><b>6</b> Functies</a><ul>
+<li class="chapter" data-level="6.1" data-path="functies.html"><a href="functies.html#wat-zijn-functies"><i class="fa fa-check"></i><b>6.1</b> Wat zijn functies</a></li>
+<li class="chapter" data-level="6.2" data-path="functies.html"><a href="functies.html#het-gebruik-van-functies"><i class="fa fa-check"></i><b>6.2</b> Het gebruik van functies</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="functies.html"><a href="functies.html#argumenten-en-return-waarden"><i class="fa fa-check"></i><b>6.2.1</b> Argumenten en return-waarden</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="functies.html"><a href="functies.html#functies-met-meerdere-argumenten.-gebruik-van-argumentnamen"><i class="fa fa-check"></i><b>6.3</b> Functies met meerdere argumenten. Gebruik van argumentnamen</a></li>
+<li class="chapter" data-level="6.4" data-path="functies.html"><a href="functies.html#vervangingsfuncties"><i class="fa fa-check"></i><b>6.4</b> Vervangingsfuncties</a></li>
+<li class="chapter" data-level="6.5" data-path="functies.html"><a href="functies.html#ellips"><i class="fa fa-check"></i><b>6.5</b> Ellips (…)</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="control-flow.html"><a href="control-flow.html"><i class="fa fa-check"></i><b>7</b> Control flow</a><ul>
+<li class="chapter" data-level="7.1" data-path="control-flow.html"><a href="control-flow.html#het-if-statement"><i class="fa fa-check"></i><b>7.1</b> Het if-statement</a></li>
+<li class="chapter" data-level="7.2" data-path="control-flow.html"><a href="control-flow.html#for-loops"><i class="fa fa-check"></i><b>7.2</b> for-loops</a></li>
+<li class="chapter" data-level="7.3" data-path="control-flow.html"><a href="control-flow.html#while-en-repeat-loops"><i class="fa fa-check"></i><b>7.3</b> while en repeat loops</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="data-frames-importeren.html"><a href="data-frames-importeren.html"><i class="fa fa-check"></i><b>8</b> Data frames importeren</a></li>
+<li class="chapter" data-level="9" data-path="standaard-statistische-toetsen-voor-continue-data.html"><a href="standaard-statistische-toetsen-voor-continue-data.html"><i class="fa fa-check"></i><b>9</b> Standaard statistische toetsen voor continue data</a><ul>
+<li class="chapter" data-level="9.1" data-path="standaard-statistische-toetsen-voor-continue-data.html"><a href="standaard-statistische-toetsen-voor-continue-data.html#een-steekproef"><i class="fa fa-check"></i><b>9.1</b> Een steekproef</a></li>
+<li class="chapter" data-level="9.2" data-path="standaard-statistische-toetsen-voor-continue-data.html"><a href="standaard-statistische-toetsen-voor-continue-data.html#twee-steekproeven"><i class="fa fa-check"></i><b>9.2</b> Twee steekproeven</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="standaard-statistische-toetsen-voor-continue-data.html"><a href="standaard-statistische-toetsen-voor-continue-data.html#ongepaarde-data"><i class="fa fa-check"></i><b>9.2.1</b> Ongepaarde data</a></li>
+<li class="chapter" data-level="9.2.2" data-path="standaard-statistische-toetsen-voor-continue-data.html"><a href="standaard-statistische-toetsen-voor-continue-data.html#gepaarde-data"><i class="fa fa-check"></i><b>9.2.2</b> Gepaarde data</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="standaard-statistische-toetsen-voor-continue-data.html"><a href="standaard-statistische-toetsen-voor-continue-data.html#meer-dan-twee-steekproeven"><i class="fa fa-check"></i><b>9.3</b> Meer dan twee steekproeven</a></li>
+<li class="chapter" data-level="9.4" data-path="standaard-statistische-toetsen-voor-continue-data.html"><a href="standaard-statistische-toetsen-voor-continue-data.html#standaard-toetsen-voor-categorische-data"><i class="fa fa-check"></i><b>9.4</b> Standaard toetsen voor categorische data</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="standaard-statistische-toetsen-voor-continue-data.html"><a href="standaard-statistische-toetsen-voor-continue-data.html#een-steekproef-1"><i class="fa fa-check"></i><b>9.4.1</b> Een steekproef</a></li>
+<li class="chapter" data-level="9.4.2" data-path="standaard-statistische-toetsen-voor-continue-data.html"><a href="standaard-statistische-toetsen-voor-continue-data.html#twee-of-meer-onafhankelijke-steekproeven"><i class="fa fa-check"></i><b>9.4.2</b> Twee (of meer) onafhankelijke steekproeven</a></li>
+<li class="chapter" data-level="9.4.3" data-path="standaard-statistische-toetsen-voor-continue-data.html"><a href="standaard-statistische-toetsen-voor-continue-data.html#twee-afhankelijke-steekproeven."><i class="fa fa-check"></i><b>9.4.3</b> Twee afhankelijke steekproeven.</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="plaatjes.html"><a href="plaatjes.html"><i class="fa fa-check"></i><b>10</b> Plaatjes</a><ul>
+<li class="chapter" data-level="10.1" data-path="plaatjes.html"><a href="plaatjes.html#histogrammen"><i class="fa fa-check"></i><b>10.1</b> Histogrammen</a></li>
+<li class="chapter" data-level="10.2" data-path="plaatjes.html"><a href="plaatjes.html#circel--en-staafdiagrammen-en-dotcharts"><i class="fa fa-check"></i><b>10.2</b> Circel- en staafdiagrammen en dotcharts</a></li>
+<li class="chapter" data-level="10.3" data-path="plaatjes.html"><a href="plaatjes.html#algemene-elementen-van-figuren-in-r"><i class="fa fa-check"></i><b>10.3</b> Algemene elementen van figuren in R</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="plaatjes.html"><a href="plaatjes.html#col"><i class="fa fa-check"></i><b>10.3.1</b> col</a></li>
+<li class="chapter" data-level="10.3.2" data-path="plaatjes.html"><a href="plaatjes.html#pch"><i class="fa fa-check"></i><b>10.3.2</b> pch</a></li>
+<li class="chapter" data-level="10.3.3" data-path="plaatjes.html"><a href="plaatjes.html#cex"><i class="fa fa-check"></i><b>10.3.3</b> cex</a></li>
+<li class="chapter" data-level="10.3.4" data-path="plaatjes.html"><a href="plaatjes.html#lwd"><i class="fa fa-check"></i><b>10.3.4</b> lwd</a></li>
+<li class="chapter" data-level="10.3.5" data-path="plaatjes.html"><a href="plaatjes.html#lty"><i class="fa fa-check"></i><b>10.3.5</b> lty</a></li>
+<li class="chapter" data-level="10.3.6" data-path="plaatjes.html"><a href="plaatjes.html#xlim-ylim"><i class="fa fa-check"></i><b>10.3.6</b> xlim / ylim</a></li>
+<li class="chapter" data-level="10.3.7" data-path="plaatjes.html"><a href="plaatjes.html#xlab-ylab"><i class="fa fa-check"></i><b>10.3.7</b> xlab / ylab</a></li>
+<li class="chapter" data-level="10.3.8" data-path="plaatjes.html"><a href="plaatjes.html#main"><i class="fa fa-check"></i><b>10.3.8</b> main</a></li>
+<li class="chapter" data-level="10.3.9" data-path="plaatjes.html"><a href="plaatjes.html#mar"><i class="fa fa-check"></i><b>10.3.9</b> mar</a></li>
+<li class="chapter" data-level="10.3.10" data-path="plaatjes.html"><a href="plaatjes.html#mfow"><i class="fa fa-check"></i><b>10.3.10</b> mfow</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="plaatjes.html"><a href="plaatjes.html#lower-level-plot-functies"><i class="fa fa-check"></i><b>10.4</b> Lower-level plot functies</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="plaatjes.html"><a href="plaatjes.html#pointsx-y"><i class="fa fa-check"></i><b>10.4.1</b> points(x, y, …)</a></li>
+<li class="chapter" data-level="10.4.2" data-path="plaatjes.html"><a href="plaatjes.html#linesx-y"><i class="fa fa-check"></i><b>10.4.2</b> lines(x, y, …)</a></li>
+<li class="chapter" data-level="10.4.3" data-path="plaatjes.html"><a href="plaatjes.html#textx-y-labels"><i class="fa fa-check"></i><b>10.4.3</b> text(x, y, labels, …)</a></li>
+<li class="chapter" data-level="10.4.4" data-path="plaatjes.html"><a href="plaatjes.html#abline"><i class="fa fa-check"></i><b>10.4.4</b> abline(…)</a></li>
+<li class="chapter" data-level="10.4.5" data-path="plaatjes.html"><a href="plaatjes.html#legendx-y-legend"><i class="fa fa-check"></i><b>10.4.5</b> legend(x, y, legend, …)</a></li>
+<li class="chapter" data-level="10.4.6" data-path="plaatjes.html"><a href="plaatjes.html#titlemain-sub"><i class="fa fa-check"></i><b>10.4.6</b> title(main, sub, …)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="overzicht-functies.html"><a href="overzicht-functies.html"><i class="fa fa-check"></i><b>11</b> Overzicht functies</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="../default.aspx" target="_self">Back to Sharepoint site</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introductiecursus R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="plaatjes" class="section level1">
+<h1><span class="header-section-number">Hoofdstuk10</span> Plaatjes</h1>
+<p>We krijgen vaak meer inzicht in een data set door het maken van enkele goedgekozen plaatjes dan door het bekijken van tabellen van kengetallen. We zullen hier enkele R commando’s beschrijven die hiervoor van nut kunnen zijn.
+Er zijn verschillende R packages om plaatjes te maken. De belangrijkste zijn:
+*</p>
+<pre><code>* lattice
+* ggplot2</code></pre>
+<p>We zullen hier de base graphics uit de graphics package bespreken. Deze plot functies kunnen verdeeld worden in twee types: de zogenoemde <code>higher-level</code> en <code>lower-level</code> plotting functies. Het verschil is dat de eerste een min of meer compleet plaatje maken en de laatste iets toevoegen aan een bestaand plaatje (zoals een referentielijn of een legenda). Vaak worden ingewikkelde plaatjes stap voor stap gemaakt door eerst een ‘higher-level’ functie te gebruiken en dan telkens elementen aan het plaatje toe te voegen.</p>
+<div id="histogrammen" class="section level2">
+<h2><span class="header-section-number">10.1</span> Histogrammen</h2>
+<p>Als we iets te weten willen komen over de verdeling van een variabele kunnen we een histogram maken. De functie om dit te doen in R is <code>hist</code>. laten we naar de pijnscores op het vervolgmoment kijken.</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" title="1"><span class="kw">hist</span>(mydata<span class="op">$</span>painfu)</a></code></pre></div>
+<p><img src="_main_images/hist11-1.png" width="672" />
+Wanneer we deze functie toepassen in RStudio zal in de rechter benedenhoek een plaatje weergegeven worden. We kunnen deze dan opslaan in bijvoorbeeld pdf of jpg formaat als we het resultaat willen bewaren.</p>
+<p>We kunnen het histogram verder aanpassen door bijvoorbeeld het aantal intervallen te veranderen door middel van de parameter <code>breaks</code>.</p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" title="1"><span class="kw">hist</span>(mydata<span class="op">$</span>painfu, <span class="dt">breaks=</span><span class="dv">20</span>)</a>
+<a class="sourceLine" id="cb142-2" title="2"><span class="kw">hist</span>(mydata<span class="op">$</span>painfu, <span class="dt">breaks=</span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">80</span>,<span class="dv">5</span>))</a></code></pre></div>
+<p><img src="_main_images/hist2-1.png" width="672" /></p>
+</div>
+<div id="circel--en-staafdiagrammen-en-dotcharts" class="section level2">
+<h2><span class="header-section-number">10.2</span> Circel- en staafdiagrammen en dotcharts</h2>
+<p>Wanneer we willen kijken naar een de verdeling van een categorische variabele wordt vaak een cirkeldiagram gebruikt. De <code>pie</code> functie heeft als input een vector met frequenties nodig om een dergelijke afbeelding te maken, meestal samen met de labels. Vaak is het makkelijker om een <code>table</code> als input te gebruiken:</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" title="1"><span class="kw">pie</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>), <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&#39;foo&#39;</span>, <span class="st">&#39;bar&#39;</span>, <span class="st">&#39;buz&#39;</span>) )</a></code></pre></div>
+<p><img src="_main_images/pie-1.png" width="672" /></p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" title="1"><span class="kw">pie</span>(<span class="kw">table</span>(mydata<span class="op">$</span>race))</a></code></pre></div>
+<p><img src="_main_images/pie-2.png" width="672" /></p>
+<p>Er zijn mensen die cirkeldiagram afraden omdat mensen slecht zijn in het inschatten van de relatieve oppervlakten. Een zogenaamd dotchart kan een alternatief zijn.</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" title="1"><span class="kw">dotchart</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>), <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&#39;foo&#39;</span>, <span class="st">&#39;bar&#39;</span>, <span class="st">&#39;buz&#39;</span>) )</a></code></pre></div>
+<p><img src="_main_images/dotchart1-1.png" width="672" /></p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" title="1"><span class="kw">dotchart</span>(<span class="kw">c</span>(<span class="kw">table</span>(mydata<span class="op">$</span>race)))</a></code></pre></div>
+<p><img src="_main_images/dotchart1-2.png" width="672" />
+Het was hier nodig om de tabel om te zetten naar een vector door de functie <code>c</code> te gebruiken. In plaats van een vector is het ook mogelijk om een matrix of twee-dimensionale tabel te gebruiken.</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" title="1"><span class="kw">dotchart</span>(<span class="kw">table</span>(mydata<span class="op">$</span>race, mydata<span class="op">$</span>sex))</a></code></pre></div>
+<p><img src="_main_images/dotchart2-1.png" width="672" /></p>
+<p>Een ander alternatief is een barchart (een figuur die lijkt op een histogram maar met een categorische variabele op de x-as). In R kunnen we een staafdiagram maken met de functie <code>barplot</code>. De namen van de verschillende categorieën moeten we nu specificeren met de parameter <code>names.arg</code> in plaats van <code>labels</code>.</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" title="1"><span class="kw">barplot</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>), <span class="dt">names.arg =</span><span class="kw">c</span>(<span class="st">&#39;foo&#39;</span>, <span class="st">&#39;bar&#39;</span>, <span class="st">&#39;buz&#39;</span>)  )</a></code></pre></div>
+<p><img src="_main_images/barchart1-1.png" width="672" /></p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" title="1"><span class="kw">barplot</span>(<span class="kw">table</span>(mydata<span class="op">$</span>race))</a></code></pre></div>
+<p><img src="_main_images/barchart1-2.png" width="672" />
+Ook hier kunnen we weer een <code>matrix</code> of <code>table</code> gebruiken.</p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" title="1"><span class="kw">barplot</span>(<span class="kw">table</span>(mydata<span class="op">$</span>race, mydata<span class="op">$</span>sex))</a></code></pre></div>
+<p><img src="_main_images/barchart2-1.png" width="672" />
+Het zou natuurlijk beter zijn om een legenda aan de figuur toe te voegen om aan te geven wat de verschillende kleuren betekenen. We bespreken later hoe je dit zou kunnen doen. Het is ook mogelijk om de categorieën naast elkaar weer te geven:</p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" title="1"><span class="kw">barplot</span>(<span class="kw">table</span>(mydata<span class="op">$</span>race, mydata<span class="op">$</span>sex),<span class="dt">beside =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p><img src="_main_images/barchart3-1.png" width="672" />
+## Scatterplots</p>
+<p>Wanneer we naar het verband tussen twee continue variabelen willen kijken kan dat door een scatterplot te maken. In R kan dit door middel van de functie <code>plot</code>.</p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" title="1"><span class="kw">plot</span>(mydata<span class="op">$</span>height, mydata<span class="op">$</span>weight)</a></code></pre></div>
+<p><img src="_main_images/unnamed-chunk-42-1.png" width="672" /></p>
+<p>Wanneer we slechts een enkele input vector gebruiken worden de waarnemingen uitgezet tegen de observatienummers. In dit geval is dat niet zo zinvol.</p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" title="1"><span class="kw">plot</span>(mydata<span class="op">$</span>height)</a></code></pre></div>
+<p><img src="_main_images/unnamed-chunk-43-1.png" width="672" />
+Soms willen we de relatie tussen verschillende continue variabelen in een keer laten zien. Dit kan met een zogenaamde scatterplotmatrix. Zoals de naam al aangeeft is dit een matrix waarbij in de cellen telkens de paarsgewijze combinaties van variabelen staan.</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" title="1"><span class="kw">pairs</span>(<span class="op">~</span>height<span class="op">+</span>weight<span class="op">+</span>painbl, <span class="dt">data=</span>mydata)</a></code></pre></div>
+<p><img src="_main_images/unnamed-chunk-44-1.png" width="672" /></p>
+</div>
+<div id="algemene-elementen-van-figuren-in-r" class="section level2">
+<h2><span class="header-section-number">10.3</span> Algemene elementen van figuren in R</h2>
+<p>De figuren die we hierboven hebben gemaakt zijn erg eenvoudig en zeker voor verbetering vatbaar. We kunnen veel veranderen aan de manier waarop de verschillende elementen worden weergegeven door extra argumenten te gebruiken in de plotfuncties. Deze grafische parameters om zaken als kleur, lijndikte, etc. aan te passen verschillen niet tussen de higher level plot functies. We zullen hier de belangrijkste bespreken.</p>
+<p>Een andere manier om deze eigenschappen van de plaatjes aan te passen is met behulp van de functie <code>par</code>. Enkele parameters kunnen zelfs alleen maar op deze manier worden aangepast.</p>
+<div id="col" class="section level3">
+<h3><span class="header-section-number">10.3.1</span> col</h3>
+<p>De parameter <code>col</code> wordt gebruikt om aan te geven in welke kleur iets geplot moet worden. Er zijn in R verschillende manieren om kleuren te specificeren. De eerste is om de naam van de kleur te gebruiken als een character waarde. Je kan zien welke namen voor kleuren R kent door middel van de functie <code>colors()</code>.</p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" title="1"><span class="kw">plot</span>(mydata<span class="op">$</span>height, <span class="dt">col=</span><span class="st">&#39;red&#39;</span>)</a></code></pre></div>
+<p><img src="_main_images/unnamed-chunk-45-1.png" width="672" />
+Een tweede manier om kleuren aan te geven is door middel van gehele getallen. Deze getallen Deze waarden corresponderen met de positie in het kleurenpalet dat R gebruikt. Standaard is 1 zwart, 2 rood, 3 groen, 4 blauw, 5 cyaan, 6 magenta, 7 geel en 8 grijs. Het kleurenpalet kan weergegeven of gewijzigd worden door middel van de <code>palette</code> functie.
+Een laatste manier om kleuren te specificeren is door middel van een hexadecimale kleurwaarde(dwz 16-tallig stelsel, er wordt niet met tien cijfers maar met zestien cijfers gewerkt, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E en F). Het komt erop neer dat er een tekstwaarde gebruikt wordt waarbij de eerste twee tekens de intensiteit van het rode signaal aangeven op een schaal van 0 tot 255, de volgende twee tekens de intensiteit van het groene signaal en het vijfde en zesde teken de intensiteit van het blauwe signaal.</p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" title="1"><span class="kw">plot</span>(mydata<span class="op">$</span>height, <span class="dt">col=</span><span class="st">&#39;#AA11AA&#39;</span>)</a></code></pre></div>
+<p><img src="_main_images/unnamed-chunk-46-1.png" width="672" /></p>
+</div>
+<div id="pch" class="section level3">
+<h3><span class="header-section-number">10.3.2</span> pch</h3>
+<p>Met <code>pch</code> wordt het symbool aangegeven dat voor de plot gebruikt wordt Meestal worden gehele getallen gebruikt waarbij elk getal staat voor een specifiek symbool.</p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" title="1"><span class="kw">plot</span>(<span class="dt">x=</span><span class="dv">1</span><span class="op">:</span><span class="dv">16</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">16</span>, <span class="dt">pch=</span><span class="dv">1</span><span class="op">:</span><span class="dv">16</span>)</a></code></pre></div>
+<p><img src="_main_images/pch-1.png" width="672" /></p>
+</div>
+<div id="cex" class="section level3">
+<h3><span class="header-section-number">10.3.3</span> cex</h3>
+<p>Met de parameter <code>cex</code> geven we aan hoe groot de symbolen en tekst moeten zijn.</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" title="1"><span class="kw">plot</span>(<span class="dt">x=</span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="fl">0.25</span>), <span class="dt">y=</span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="fl">0.25</span>), <span class="dt">cex=</span><span class="kw">exp</span>(<span class="kw">seq</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="fl">0.25</span>)))</a></code></pre></div>
+<p><img src="_main_images/cex-1.png" width="672" /></p>
+</div>
+<div id="lwd" class="section level3">
+<h3><span class="header-section-number">10.3.4</span> lwd</h3>
+<p>De parameter <code>lwd</code> geeft aan hoe dik de lijnen moeten zijn.</p>
+</div>
+<div id="lty" class="section level3">
+<h3><span class="header-section-number">10.3.5</span> lty</h3>
+<p>Met <code>lty</code> wordt het lijntype aangegeven: 1 is een doorgetrokken lijn, 2 is gestreept en 3 gestippeld. Er zijn ook complexere lijnstijlen mogelijk (zie ?par).</p>
+</div>
+<div id="xlim-ylim" class="section level3">
+<h3><span class="header-section-number">10.3.6</span> xlim / ylim</h3>
+<p>Met <code>xlim</code> en <code>ylim</code> wordt aangegeven bij welke waarden de assen beginnen/ stoppen. Standaard zal R het plotbereik een klein beetje groter maken zodat de extremen niet precies op de rand van de plot vallen.</p>
+</div>
+<div id="xlab-ylab" class="section level3">
+<h3><span class="header-section-number">10.3.7</span> xlab / ylab</h3>
+<p>Met <code>xlab</code> en <code>ylab</code> kan gespecificeerd worden wat de labels zijn van de x-as en y-as van de plot.</p>
+</div>
+<div id="main" class="section level3">
+<h3><span class="header-section-number">10.3.8</span> main</h3>
+<p>Met de parameter <code>main</code> wordt aangegeven wat de titel van de plot moet zijn. Het is een alternatief voor de functie <code>title()</code>.</p>
+</div>
+<div id="mar" class="section level3">
+<h3><span class="header-section-number">10.3.9</span> mar</h3>
+<p>Met <code>mar</code> kunnen we de marges van de plot (in ‘regels’ aangeven). We kunnen de marges alleen veranderen door middel van de functie <code>par()</code> . Deze parameter moet bestaan uit een vector van precies vier waarden, de vier getallen staan voor respectievelijk de ondermarge, de linkermarge, de bovenmarge en de rechtermarge.</p>
+</div>
+<div id="mfow" class="section level3">
+<h3><span class="header-section-number">10.3.10</span> mfow</h3>
+<p>Met de parameter <code>mfrow</code> specificeren we het aantal subplots. Dit is er normaal slechts een maar dit kan veranderd worden. <code>mfrow</code> kunnen we alleen instellen met behulp van de functie <code>par</code>. De parameter <code>mfow</code> moet bestaan uit een vector van lengte twee waarbij het eerste getal het aantal rijen van subplots aangeeft en het tweede getal het aantal kolommen.</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb159-1" title="1">opar &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb159-2" title="2"><span class="kw">hist</span>(mydata<span class="op">$</span>height, <span class="dt">col=</span><span class="st">&#39;red&#39;</span>)</a>
+<a class="sourceLine" id="cb159-3" title="3"><span class="kw">hist</span>(mydata<span class="op">$</span>weight, <span class="dt">col=</span><span class="st">&#39;blue&#39;</span>)</a></code></pre></div>
+<p><img src="_main_images/unnamed-chunk-47-1.png" width="672" /></p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" title="1"><span class="kw">par</span>(opar)</a></code></pre></div>
+<p>Let op hoe we <code>par</code> hierboven gebruiken om de grafische parameters weer naar terug te zetten naar de waarden die ze hadden voor we ze aanpasten.</p>
+</div>
+</div>
+<div id="lower-level-plot-functies" class="section level2">
+<h2><span class="header-section-number">10.4</span> Lower-level plot functies</h2>
+<p>Met de lower-level functies kunnen we elementen aan een bestaand plaatje toevoegen. Voorbeelden van deze functies zijn:</p>
+<div id="pointsx-y" class="section level3">
+<h3><span class="header-section-number">10.4.1</span> points(x, y, …)</h3>
+<p>Om punten toe te voegen aan een plaatje.</p>
+</div>
+<div id="linesx-y" class="section level3">
+<h3><span class="header-section-number">10.4.2</span> lines(x, y, …)</h3>
+<p>Om lijnen toe te voegen aan een plaatje.</p>
+</div>
+<div id="textx-y-labels" class="section level3">
+<h3><span class="header-section-number">10.4.3</span> text(x, y, labels, …)</h3>
+<p>Om lijnen toe te voegen aan een plaatje.</p>
+</div>
+<div id="abline" class="section level3">
+<h3><span class="header-section-number">10.4.4</span> abline(…)</h3>
+<p>Met deze functie kunnen we een referentielijn toevoegen. We kunnen een horizontale lijn maken met <code>abline(h=y)</code> een verticale lijn met <code>abline(v=x)</code>. En diagonale lijn y=a *x + b kunnen we maken met <code>abline(a=a, b=b)</code> (hier komt ook de naam van de functie vandaan).</p>
+</div>
+<div id="legendx-y-legend" class="section level3">
+<h3><span class="header-section-number">10.4.5</span> legend(x, y, legend, …)</h3>
+<p>Met deze functie kun je een legenda toevoegen aan een plaatje. Behalve x-, en y-coördinaten kunnen we de positie ook aangeven door middel van de tekstwaarden als ‘top’, ‘bottom’, ‘left’ en ‘right’.</p>
+</div>
+<div id="titlemain-sub" class="section level3">
+<h3><span class="header-section-number">10.4.6</span> title(main, sub, …)</h3>
+<p>Hiermee kunnen we een titel en ondertitel aan een plaatje toevoegen.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="standaard-statistische-toetsen-voor-continue-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="overzicht-functies.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["RGynReader.pdf", "RGynReader.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

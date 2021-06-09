@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Hoofdstuk6 Functies | Introductiecursus R</title>
+  <meta name="description" content="Introductie R." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Hoofdstuk6 Functies | Introductiecursus R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Introductie R." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Hoofdstuk6 Functies | Introductiecursus R" />
+  
+  <meta name="twitter:description" content="Introductie R." />
+  
+
+<meta name="author" content="Sten Willemsen" />
+
+
+<meta name="date" content="2021-06-09" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="subsetting.html"/>
+<link rel="next" href="control-flow.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R Course</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Voorwoord</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introductie</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#waarom-r"><i class="fa fa-check"></i><b>2.1</b> Waarom R</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#installatie-van-r-en-rstudio"><i class="fa fa-check"></i><b>2.2</b> Installatie van R en RStudio</a></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#interface-van-rstudio"><i class="fa fa-check"></i><b>2.3</b> Interface van RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Basis van R</a><ul>
+<li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#r-als-rekenmachine"><i class="fa fa-check"></i><b>3.1</b> R als rekenmachine</a></li>
+<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#variabelen"><i class="fa fa-check"></i><b>3.2</b> Variabelen</a></li>
+<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#library-en-packages"><i class="fa fa-check"></i><b>3.3</b> library en packages</a></li>
+<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#documentatie"><i class="fa fa-check"></i><b>3.4</b> Documentatie</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>4</b> Een data bestand</a><ul>
+<li class="chapter" data-level="4.1" data-path="data.html"><a href="data.html#inlezen-van-een-bestand"><i class="fa fa-check"></i><b>4.1</b> Inlezen van een bestand</a></li>
+<li class="chapter" data-level="4.2" data-path="data.html"><a href="data.html#data.frames"><i class="fa fa-check"></i><b>4.2</b> data.frames</a></li>
+<li class="chapter" data-level="4.3" data-path="data.html"><a href="data.html#vectoren-en-datatypen"><i class="fa fa-check"></i><b>4.3</b> vectoren en datatypen</a></li>
+<li class="chapter" data-level="4.4" data-path="data.html"><a href="data.html#lists"><i class="fa fa-check"></i><b>4.4</b> lists</a></li>
+<li class="chapter" data-level="4.5" data-path="data.html"><a href="data.html#factors"><i class="fa fa-check"></i><b>4.5</b> factors</a></li>
+<li class="chapter" data-level="4.6" data-path="data.html"><a href="data.html#missende-waarden"><i class="fa fa-check"></i><b>4.6</b> Missende waarden</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="subsetting.html"><a href="subsetting.html"><i class="fa fa-check"></i><b>5</b> Selecties</a><ul>
+<li class="chapter" data-level="5.1" data-path="subsetting.html"><a href="subsetting.html#indexeren-in-een-vector"><i class="fa fa-check"></i><b>5.1</b> Indexeren in een vector</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="subsetting.html"><a href="subsetting.html#selecties-maken-gebaseerd-op-positie-in-een-vector"><i class="fa fa-check"></i><b>5.1.1</b> Selecties maken gebaseerd op positie in een vector</a></li>
+<li class="chapter" data-level="5.1.2" data-path="subsetting.html"><a href="subsetting.html#selecties-maken-gebaseerd-op-een-conditie-waaronwaar"><i class="fa fa-check"></i><b>5.1.2</b> Selecties maken gebaseerd op een conditie (waar/onwaar)</a></li>
+<li class="chapter" data-level="5.1.3" data-path="subsetting.html"><a href="subsetting.html#selecties-maken-met-een-naam"><i class="fa fa-check"></i><b>5.1.3</b> Selecties maken met een naam</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="subsetting.html"><a href="subsetting.html#selecteren-van-variabelen-en-observaties-in-een-data.frame"><i class="fa fa-check"></i><b>5.2</b> Selecteren van variabelen en observaties in een <code>data.frame</code></a><ul>
+<li class="chapter" data-level="5.2.1" data-path="subsetting.html"><a href="subsetting.html#dubelle-haken-en-het-dollarteken"><i class="fa fa-check"></i><b>5.2.1</b> Dubelle haken en het dollarteken</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="subsetting.html"><a href="subsetting.html#selecties-maken-in-een-list"><i class="fa fa-check"></i><b>5.3</b> Selecties maken in een list</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="functies.html"><a href="functies.html"><i class="fa fa-check"></i><b>6</b> Functies</a><ul>
+<li class="chapter" data-level="6.1" data-path="functies.html"><a href="functies.html#wat-zijn-functies"><i class="fa fa-check"></i><b>6.1</b> Wat zijn functies</a></li>
+<li class="chapter" data-level="6.2" data-path="functies.html"><a href="functies.html#het-gebruik-van-functies"><i class="fa fa-check"></i><b>6.2</b> Het gebruik van functies</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="functies.html"><a href="functies.html#argumenten-en-return-waarden"><i class="fa fa-check"></i><b>6.2.1</b> Argumenten en return-waarden</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="functies.html"><a href="functies.html#functies-met-meerdere-argumenten.-gebruik-van-argumentnamen"><i class="fa fa-check"></i><b>6.3</b> Functies met meerdere argumenten. Gebruik van argumentnamen</a></li>
+<li class="chapter" data-level="6.4" data-path="functies.html"><a href="functies.html#vervangingsfuncties"><i class="fa fa-check"></i><b>6.4</b> Vervangingsfuncties</a></li>
+<li class="chapter" data-level="6.5" data-path="functies.html"><a href="functies.html#ellips"><i class="fa fa-check"></i><b>6.5</b> Ellips (…)</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="control-flow.html"><a href="control-flow.html"><i class="fa fa-check"></i><b>7</b> Control flow</a><ul>
+<li class="chapter" data-level="7.1" data-path="control-flow.html"><a href="control-flow.html#het-if-statement"><i class="fa fa-check"></i><b>7.1</b> Het if-statement</a></li>
+<li class="chapter" data-level="7.2" data-path="control-flow.html"><a href="control-flow.html#for-loops"><i class="fa fa-check"></i><b>7.2</b> for-loops</a></li>
+<li class="chapter" data-level="7.3" data-path="control-flow.html"><a href="control-flow.html#while-en-repeat-loops"><i class="fa fa-check"></i><b>7.3</b> while en repeat loops</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="data-frames-importeren.html"><a href="data-frames-importeren.html"><i class="fa fa-check"></i><b>8</b> Data frames importeren</a></li>
+<li class="chapter" data-level="9" data-path="standaard-statistische-toetsen-voor-continue-data.html"><a href="standaard-statistische-toetsen-voor-continue-data.html"><i class="fa fa-check"></i><b>9</b> Standaard statistische toetsen voor continue data</a><ul>
+<li class="chapter" data-level="9.1" data-path="standaard-statistische-toetsen-voor-continue-data.html"><a href="standaard-statistische-toetsen-voor-continue-data.html#een-steekproef"><i class="fa fa-check"></i><b>9.1</b> Een steekproef</a></li>
+<li class="chapter" data-level="9.2" data-path="standaard-statistische-toetsen-voor-continue-data.html"><a href="standaard-statistische-toetsen-voor-continue-data.html#twee-steekproeven"><i class="fa fa-check"></i><b>9.2</b> Twee steekproeven</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="standaard-statistische-toetsen-voor-continue-data.html"><a href="standaard-statistische-toetsen-voor-continue-data.html#ongepaarde-data"><i class="fa fa-check"></i><b>9.2.1</b> Ongepaarde data</a></li>
+<li class="chapter" data-level="9.2.2" data-path="standaard-statistische-toetsen-voor-continue-data.html"><a href="standaard-statistische-toetsen-voor-continue-data.html#gepaarde-data"><i class="fa fa-check"></i><b>9.2.2</b> Gepaarde data</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="standaard-statistische-toetsen-voor-continue-data.html"><a href="standaard-statistische-toetsen-voor-continue-data.html#meer-dan-twee-steekproeven"><i class="fa fa-check"></i><b>9.3</b> Meer dan twee steekproeven</a></li>
+<li class="chapter" data-level="9.4" data-path="standaard-statistische-toetsen-voor-continue-data.html"><a href="standaard-statistische-toetsen-voor-continue-data.html#standaard-toetsen-voor-categorische-data"><i class="fa fa-check"></i><b>9.4</b> Standaard toetsen voor categorische data</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="standaard-statistische-toetsen-voor-continue-data.html"><a href="standaard-statistische-toetsen-voor-continue-data.html#een-steekproef-1"><i class="fa fa-check"></i><b>9.4.1</b> Een steekproef</a></li>
+<li class="chapter" data-level="9.4.2" data-path="standaard-statistische-toetsen-voor-continue-data.html"><a href="standaard-statistische-toetsen-voor-continue-data.html#twee-of-meer-onafhankelijke-steekproeven"><i class="fa fa-check"></i><b>9.4.2</b> Twee (of meer) onafhankelijke steekproeven</a></li>
+<li class="chapter" data-level="9.4.3" data-path="standaard-statistische-toetsen-voor-continue-data.html"><a href="standaard-statistische-toetsen-voor-continue-data.html#twee-afhankelijke-steekproeven."><i class="fa fa-check"></i><b>9.4.3</b> Twee afhankelijke steekproeven.</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="plaatjes.html"><a href="plaatjes.html"><i class="fa fa-check"></i><b>10</b> Plaatjes</a><ul>
+<li class="chapter" data-level="10.1" data-path="plaatjes.html"><a href="plaatjes.html#histogrammen"><i class="fa fa-check"></i><b>10.1</b> Histogrammen</a></li>
+<li class="chapter" data-level="10.2" data-path="plaatjes.html"><a href="plaatjes.html#circel--en-staafdiagrammen-en-dotcharts"><i class="fa fa-check"></i><b>10.2</b> Circel- en staafdiagrammen en dotcharts</a></li>
+<li class="chapter" data-level="10.3" data-path="plaatjes.html"><a href="plaatjes.html#algemene-elementen-van-figuren-in-r"><i class="fa fa-check"></i><b>10.3</b> Algemene elementen van figuren in R</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="plaatjes.html"><a href="plaatjes.html#col"><i class="fa fa-check"></i><b>10.3.1</b> col</a></li>
+<li class="chapter" data-level="10.3.2" data-path="plaatjes.html"><a href="plaatjes.html#pch"><i class="fa fa-check"></i><b>10.3.2</b> pch</a></li>
+<li class="chapter" data-level="10.3.3" data-path="plaatjes.html"><a href="plaatjes.html#cex"><i class="fa fa-check"></i><b>10.3.3</b> cex</a></li>
+<li class="chapter" data-level="10.3.4" data-path="plaatjes.html"><a href="plaatjes.html#lwd"><i class="fa fa-check"></i><b>10.3.4</b> lwd</a></li>
+<li class="chapter" data-level="10.3.5" data-path="plaatjes.html"><a href="plaatjes.html#lty"><i class="fa fa-check"></i><b>10.3.5</b> lty</a></li>
+<li class="chapter" data-level="10.3.6" data-path="plaatjes.html"><a href="plaatjes.html#xlim-ylim"><i class="fa fa-check"></i><b>10.3.6</b> xlim / ylim</a></li>
+<li class="chapter" data-level="10.3.7" data-path="plaatjes.html"><a href="plaatjes.html#xlab-ylab"><i class="fa fa-check"></i><b>10.3.7</b> xlab / ylab</a></li>
+<li class="chapter" data-level="10.3.8" data-path="plaatjes.html"><a href="plaatjes.html#main"><i class="fa fa-check"></i><b>10.3.8</b> main</a></li>
+<li class="chapter" data-level="10.3.9" data-path="plaatjes.html"><a href="plaatjes.html#mar"><i class="fa fa-check"></i><b>10.3.9</b> mar</a></li>
+<li class="chapter" data-level="10.3.10" data-path="plaatjes.html"><a href="plaatjes.html#mfow"><i class="fa fa-check"></i><b>10.3.10</b> mfow</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="plaatjes.html"><a href="plaatjes.html#lower-level-plot-functies"><i class="fa fa-check"></i><b>10.4</b> Lower-level plot functies</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="plaatjes.html"><a href="plaatjes.html#pointsx-y"><i class="fa fa-check"></i><b>10.4.1</b> points(x, y, …)</a></li>
+<li class="chapter" data-level="10.4.2" data-path="plaatjes.html"><a href="plaatjes.html#linesx-y"><i class="fa fa-check"></i><b>10.4.2</b> lines(x, y, …)</a></li>
+<li class="chapter" data-level="10.4.3" data-path="plaatjes.html"><a href="plaatjes.html#textx-y-labels"><i class="fa fa-check"></i><b>10.4.3</b> text(x, y, labels, …)</a></li>
+<li class="chapter" data-level="10.4.4" data-path="plaatjes.html"><a href="plaatjes.html#abline"><i class="fa fa-check"></i><b>10.4.4</b> abline(…)</a></li>
+<li class="chapter" data-level="10.4.5" data-path="plaatjes.html"><a href="plaatjes.html#legendx-y-legend"><i class="fa fa-check"></i><b>10.4.5</b> legend(x, y, legend, …)</a></li>
+<li class="chapter" data-level="10.4.6" data-path="plaatjes.html"><a href="plaatjes.html#titlemain-sub"><i class="fa fa-check"></i><b>10.4.6</b> title(main, sub, …)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="overzicht-functies.html"><a href="overzicht-functies.html"><i class="fa fa-check"></i><b>11</b> Overzicht functies</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="../default.aspx" target="_self">Back to Sharepoint site</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introductiecursus R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="functies" class="section level1">
+<h1><span class="header-section-number">Hoofdstuk6</span> Functies</h1>
+<p>De kracht van R zit voor een groot deel in het gemak waarmee eigen functies kunnen worden gemaakt. Wanneer men pas begint te werken in R zijn mensen vaak huiverig om functies te maken. Men werkt dan zoals men dat gewent is uit bijvoorbeeld SPSS. Wanneer men een script heeft gemaakt voor een bepaalde variabele (zeg CRL) en men wil dan eenzelfde analyse ook toepassen op andere variabelen (bijvoorbeeld EV en TAL) kopieert men het script en vervangt de namen van de variabelen. Door het kopiëren en plakken kunnen er echter fouten gemaakt worden (vooral als het script lang is en er op verschillende plekken namen moeten worden vervangen). Nog lastiger wordt het als men iets in het script wil veranderen (of bijvoorbeeld een fout wil herstellen). Dit moet nu voor alle afzonderlijke scripts voor alle variabelen apart gebeuren. Door te werken met functies kunnen fouten worden voorkomen en kan men zich veel werk besparen.</p>
+<div id="wat-zijn-functies" class="section level2">
+<h2><span class="header-section-number">6.1</span> Wat zijn functies</h2>
+<p>Hoewel we nog geen functies hebben gemaakt hebben we wel al veel met functies gewerkt. Bijvoorbeeld de functie, <code>log</code> om een natuurlijke logaritme uit te rekenen of<code>read.spss</code> om spss data te laden. Eigenlijk is alle functionaliteit van <code>R</code> gevat in de verschillende functies die er zijn. Maar wat is nu precies een functie. Eigenlijk is een functie code - dat wil zeggen een stukje van een programma - waaraan een naam is gegeven zodanig dat het opnieuw te gebruiken is wanneer dat nodig is.</p>
+<p>Een functie in R ziet er als volgt uit.</p>
+<pre><code>function (arguments) {body}</code></pre>
+<p>De code die we willen uitvoeren staat in de <em>body</em>. Op de argumenten van de functie komen we later terug.</p>
+</div>
+<div id="het-gebruik-van-functies" class="section level2">
+<h2><span class="header-section-number">6.2</span> Het gebruik van functies</h2>
+<p>We zullen functies toelichten aan de hand van een eenvoudig voorbeeld. Stel dat we het kwadraat van vijf willen uitrekenen; dit kan met de code <code>5^2</code>. Als we dit kwadraat erg vaak gebruiken zouden we hier een functie voor kunnen gebruiken.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" title="1">kwadraat&lt;-<span class="cf">function</span>(){</a>
+<a class="sourceLine" id="cb87-2" title="2">  <span class="dv">5</span><span class="op">^</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb87-3" title="3">}</a></code></pre></div>
+<p>We hebben nu een functie gemaakt die het kwadraat van vijf uitrekent. Elke keer als we dit kwadraat nodig hebben kunnen we de functie gebruiken:</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" title="1"><span class="kw">kwadraat</span>()</a></code></pre></div>
+<pre><code>## [1] 25</code></pre>
+<div id="argumenten-en-return-waarden" class="section level3">
+<h3><span class="header-section-number">6.2.1</span> Argumenten en return-waarden</h3>
+<p>We kunnen nu niet zo heel veel doen met deze functie. Het zou handiger zijn als deze functie ook het kwadraat van andere getallen zou kunnen uitrekenen. Hiervoor gebruiken we de <em>argumenten</em>. Dit is een variabele die in het stukje code wordt gebruikt, die bij het aanroepen van de functie wordt vervangen door een bepaalde waarde. Het is weer handiger dit te laten zien met een voorbeeldje:</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" title="1">kwadraat&lt;-<span class="cf">function</span>(grondtal){</a>
+<a class="sourceLine" id="cb90-2" title="2">  grondtal<span class="op">^</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb90-3" title="3">}</a>
+<a class="sourceLine" id="cb90-4" title="4">kw &lt;-<span class="st"> </span><span class="kw">kwadraat</span>(<span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb90-5" title="5">kw</a></code></pre></div>
+<pre><code>## [1] 16</code></pre>
+<p>De bovenstaande functie is natuurlijk heel eenvoudig. Hij bestaat slechts uit een enkele regel. In de praktijk zou je hier waarschijnlijk helemaal geen functie voor gebruiken. Toch bevat dit voorbeeld alle ingrediënten van functies. Ze hebben (meestal) een naam, in dit geval <code>kwadraat</code>; argumenten, in dit geval <code>grondtal</code>; en een zogenaamde <em>return-waarde</em>. De waarde die het resultaat is van de functieoproep die hier in de variabele <code>kw</code> wordt opgeslagen. De return-waarde is wanneer we niets anders aangeven het resultaat van de laatste regel van de functie. We kunnen de return waarde ook expliciet maken door gebruik te maken van het <em>keyword</em> <em>return</em>.</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" title="1">kwadraat&lt;-<span class="cf">function</span>(grondtal){</a>
+<a class="sourceLine" id="cb92-2" title="2">  k&lt;-grondtal<span class="op">^</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb92-3" title="3">  <span class="kw">return</span>(k)</a>
+<a class="sourceLine" id="cb92-4" title="4">}</a>
+<a class="sourceLine" id="cb92-5" title="5">kw &lt;-<span class="st"> </span><span class="kw">kwadraat</span>(<span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb92-6" title="6">kw</a></code></pre></div>
+<pre><code>## [1] 16</code></pre>
+</div>
+</div>
+<div id="functies-met-meerdere-argumenten.-gebruik-van-argumentnamen" class="section level2">
+<h2><span class="header-section-number">6.3</span> Functies met meerdere argumenten. Gebruik van argumentnamen</h2>
+<p>Het is mogelijk functies te maken met meerdere argumenten:</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" title="1">kwadraten&lt;-<span class="cf">function</span>(grondtal1, grondtal2){</a>
+<a class="sourceLine" id="cb94-2" title="2">  <span class="kw">list</span>(<span class="dt">antwoord1=</span>grondtal1<span class="op">^</span><span class="dv">2</span>, <span class="dt">antwoord2=</span>grondtal2<span class="op">^</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb94-3" title="3">}</a>
+<a class="sourceLine" id="cb94-4" title="4"><span class="kw">kwadraten</span>(<span class="dv">4</span>, <span class="dv">5</span>)</a></code></pre></div>
+<pre><code>## $antwoord1
+## [1] 16
+## 
+## $antwoord2
+## [1] 25</code></pre>
+<p>Wanneer er meerdere argumenten zijn kan het lastig zijn om te onthouden welk argument wat deed. Daarom kunnen we de in de functie oproep ook de naam van de argumenten gebruiken.</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" title="1"><span class="kw">kwadraten</span>(<span class="dt">grondtal1=</span><span class="dv">6</span>, <span class="dt">grondtal2=</span><span class="dv">8</span>)</a></code></pre></div>
+<pre><code>## $antwoord1
+## [1] 36
+## 
+## $antwoord2
+## [1] 64</code></pre>
+<p>Voor de argumenten waarvan we de naam niet gebruiken is nog steeds de positie bepalend. Bovenstaande functieoproep zou dus ook als volgt gedaan kunnen worden:</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" title="1"><span class="kw">kwadraten</span>(<span class="dv">6</span>, <span class="dt">grondtal2=</span><span class="dv">8</span>)</a></code></pre></div>
+<pre><code>## $antwoord1
+## [1] 36
+## 
+## $antwoord2
+## [1] 64</code></pre>
+</div>
+<div id="vervangingsfuncties" class="section level2">
+<h2><span class="header-section-number">6.4</span> Vervangingsfuncties</h2>
+<p>Soms kun je functies tegenkomen waarvan de naam eindigt op <code>&lt;-</code> bijvoorbeeld <code>is.na&lt;-</code> Dit zijn zogenaamde <em>vervangingsfuncties</em> of in het Engels <em>replacement functions</em>. Het ‘pijltje’ aan het einde van de naam geeft aan dat deze functies aan de linkerkant van een assignment gebruikt kunnen worden. Zo kan <code>is.na&lt;-</code> op de volgende manier gebruikt worden om elementen van een vector missend te maken:</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" title="1">een_vector &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb100-2" title="2"><span class="kw">is.na</span>(een_vector) &lt;-<span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb100-3" title="3"><span class="kw">print</span>(een_vector)</a></code></pre></div>
+<pre><code>## [1]  1 NA  3  4  5</code></pre>
+</div>
+<div id="ellips" class="section level2">
+<h2><span class="header-section-number">6.5</span> Ellips (…)</h2>
+<p>Soms bevat de lijst met parameters van een functie drie puntjes (Dit wordt een ellips genoemd.) Dit geeft aan dat er een onbepaald aantal extra ongenaamde parameters aan de functie gegeven kunnen worden. Veel gebruikte functies met een ellips in de parameter lijst zijn: <code>min</code>, <code>max</code> en <code>cat</code>, maar er zijn er vele andere.
+Vaak wordt de ellips gebruikt om parameters door te geven aan een andere functie. Zie bijvoorbeeld het onderstaand voorbeeld waar de functie <code>plot_regline</code> de kleur van de punten (maar evt ook andere argumenten) doorgeeft aan de <code>plot</code> functie:</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" title="1">plot_regline&lt;-<span class="st"> </span><span class="cf">function</span>(x, y, ...){</a>
+<a class="sourceLine" id="cb102-2" title="2">  lm1 &lt;-<span class="st"> </span><span class="kw">lm</span>(y<span class="op">~</span>x)</a>
+<a class="sourceLine" id="cb102-3" title="3">  <span class="kw">plot</span>(x, y, ...)</a>
+<a class="sourceLine" id="cb102-4" title="4">  <span class="kw">abline</span>(lm1)</a>
+<a class="sourceLine" id="cb102-5" title="5">}</a>
+<a class="sourceLine" id="cb102-6" title="6"><span class="kw">plot_regline</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">2</span>), <span class="dt">col=</span><span class="st">&#39;red&#39;</span>)</a></code></pre></div>
+<p><img src="_main_images/unnamed-chunk-36-1.png" width="672" /></p>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="4">
+<li id="fn4"><p>In dit geval is het maken van een variabele natuurlijk handiger.<a href="functies.html#fnref4" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="subsetting.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="control-flow.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["RGynReader.pdf", "RGynReader.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

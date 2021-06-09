@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Hoofdstuk9 Standaard statistische toetsen voor continue data | Introductiecursus R</title>
+  <meta name="description" content="Introductie R." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Hoofdstuk9 Standaard statistische toetsen voor continue data | Introductiecursus R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Introductie R." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Hoofdstuk9 Standaard statistische toetsen voor continue data | Introductiecursus R" />
+  
+  <meta name="twitter:description" content="Introductie R." />
+  
+
+<meta name="author" content="Sten Willemsen" />
+
+
+<meta name="date" content="2021-06-09" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-frames-importeren.html"/>
+<link rel="next" href="plaatjes.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R Course</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Voorwoord</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introductie</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#waarom-r"><i class="fa fa-check"></i><b>2.1</b> Waarom R</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#installatie-van-r-en-rstudio"><i class="fa fa-check"></i><b>2.2</b> Installatie van R en RStudio</a></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#interface-van-rstudio"><i class="fa fa-check"></i><b>2.3</b> Interface van RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Basis van R</a><ul>
+<li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#r-als-rekenmachine"><i class="fa fa-check"></i><b>3.1</b> R als rekenmachine</a></li>
+<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#variabelen"><i class="fa fa-check"></i><b>3.2</b> Variabelen</a></li>
+<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#library-en-packages"><i class="fa fa-check"></i><b>3.3</b> library en packages</a></li>
+<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#documentatie"><i class="fa fa-check"></i><b>3.4</b> Documentatie</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>4</b> Een data bestand</a><ul>
+<li class="chapter" data-level="4.1" data-path="data.html"><a href="data.html#inlezen-van-een-bestand"><i class="fa fa-check"></i><b>4.1</b> Inlezen van een bestand</a></li>
+<li class="chapter" data-level="4.2" data-path="data.html"><a href="data.html#data.frames"><i class="fa fa-check"></i><b>4.2</b> data.frames</a></li>
+<li class="chapter" data-level="4.3" data-path="data.html"><a href="data.html#vectoren-en-datatypen"><i class="fa fa-check"></i><b>4.3</b> vectoren en datatypen</a></li>
+<li class="chapter" data-level="4.4" data-path="data.html"><a href="data.html#lists"><i class="fa fa-check"></i><b>4.4</b> lists</a></li>
+<li class="chapter" data-level="4.5" data-path="data.html"><a href="data.html#factors"><i class="fa fa-check"></i><b>4.5</b> factors</a></li>
+<li class="chapter" data-level="4.6" data-path="data.html"><a href="data.html#missende-waarden"><i class="fa fa-check"></i><b>4.6</b> Missende waarden</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="subsetting.html"><a href="subsetting.html"><i class="fa fa-check"></i><b>5</b> Selecties</a><ul>
+<li class="chapter" data-level="5.1" data-path="subsetting.html"><a href="subsetting.html#indexeren-in-een-vector"><i class="fa fa-check"></i><b>5.1</b> Indexeren in een vector</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="subsetting.html"><a href="subsetting.html#selecties-maken-gebaseerd-op-positie-in-een-vector"><i class="fa fa-check"></i><b>5.1.1</b> Selecties maken gebaseerd op positie in een vector</a></li>
+<li class="chapter" data-level="5.1.2" data-path="subsetting.html"><a href="subsetting.html#selecties-maken-gebaseerd-op-een-conditie-waaronwaar"><i class="fa fa-check"></i><b>5.1.2</b> Selecties maken gebaseerd op een conditie (waar/onwaar)</a></li>
+<li class="chapter" data-level="5.1.3" data-path="subsetting.html"><a href="subsetting.html#selecties-maken-met-een-naam"><i class="fa fa-check"></i><b>5.1.3</b> Selecties maken met een naam</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="subsetting.html"><a href="subsetting.html#selecteren-van-variabelen-en-observaties-in-een-data.frame"><i class="fa fa-check"></i><b>5.2</b> Selecteren van variabelen en observaties in een <code>data.frame</code></a><ul>
+<li class="chapter" data-level="5.2.1" data-path="subsetting.html"><a href="subsetting.html#dubelle-haken-en-het-dollarteken"><i class="fa fa-check"></i><b>5.2.1</b> Dubelle haken en het dollarteken</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="subsetting.html"><a href="subsetting.html#selecties-maken-in-een-list"><i class="fa fa-check"></i><b>5.3</b> Selecties maken in een list</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="functies.html"><a href="functies.html"><i class="fa fa-check"></i><b>6</b> Functies</a><ul>
+<li class="chapter" data-level="6.1" data-path="functies.html"><a href="functies.html#wat-zijn-functies"><i class="fa fa-check"></i><b>6.1</b> Wat zijn functies</a></li>
+<li class="chapter" data-level="6.2" data-path="functies.html"><a href="functies.html#het-gebruik-van-functies"><i class="fa fa-check"></i><b>6.2</b> Het gebruik van functies</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="functies.html"><a href="functies.html#argumenten-en-return-waarden"><i class="fa fa-check"></i><b>6.2.1</b> Argumenten en return-waarden</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="functies.html"><a href="functies.html#functies-met-meerdere-argumenten.-gebruik-van-argumentnamen"><i class="fa fa-check"></i><b>6.3</b> Functies met meerdere argumenten. Gebruik van argumentnamen</a></li>
+<li class="chapter" data-level="6.4" data-path="functies.html"><a href="functies.html#vervangingsfuncties"><i class="fa fa-check"></i><b>6.4</b> Vervangingsfuncties</a></li>
+<li class="chapter" data-level="6.5" data-path="functies.html"><a href="functies.html#ellips"><i class="fa fa-check"></i><b>6.5</b> Ellips (…)</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="control-flow.html"><a href="control-flow.html"><i class="fa fa-check"></i><b>7</b> Control flow</a><ul>
+<li class="chapter" data-level="7.1" data-path="control-flow.html"><a href="control-flow.html#het-if-statement"><i class="fa fa-check"></i><b>7.1</b> Het if-statement</a></li>
+<li class="chapter" data-level="7.2" data-path="control-flow.html"><a href="control-flow.html#for-loops"><i class="fa fa-check"></i><b>7.2</b> for-loops</a></li>
+<li class="chapter" data-level="7.3" data-path="control-flow.html"><a href="control-flow.html#while-en-repeat-loops"><i class="fa fa-check"></i><b>7.3</b> while en repeat loops</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="data-frames-importeren.html"><a href="data-frames-importeren.html"><i class="fa fa-check"></i><b>8</b> Data frames importeren</a></li>
+<li class="chapter" data-level="9" data-path="standaard-statistische-toetsen-voor-continue-data.html"><a href="standaard-statistische-toetsen-voor-continue-data.html"><i class="fa fa-check"></i><b>9</b> Standaard statistische toetsen voor continue data</a><ul>
+<li class="chapter" data-level="9.1" data-path="standaard-statistische-toetsen-voor-continue-data.html"><a href="standaard-statistische-toetsen-voor-continue-data.html#een-steekproef"><i class="fa fa-check"></i><b>9.1</b> Een steekproef</a></li>
+<li class="chapter" data-level="9.2" data-path="standaard-statistische-toetsen-voor-continue-data.html"><a href="standaard-statistische-toetsen-voor-continue-data.html#twee-steekproeven"><i class="fa fa-check"></i><b>9.2</b> Twee steekproeven</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="standaard-statistische-toetsen-voor-continue-data.html"><a href="standaard-statistische-toetsen-voor-continue-data.html#ongepaarde-data"><i class="fa fa-check"></i><b>9.2.1</b> Ongepaarde data</a></li>
+<li class="chapter" data-level="9.2.2" data-path="standaard-statistische-toetsen-voor-continue-data.html"><a href="standaard-statistische-toetsen-voor-continue-data.html#gepaarde-data"><i class="fa fa-check"></i><b>9.2.2</b> Gepaarde data</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="standaard-statistische-toetsen-voor-continue-data.html"><a href="standaard-statistische-toetsen-voor-continue-data.html#meer-dan-twee-steekproeven"><i class="fa fa-check"></i><b>9.3</b> Meer dan twee steekproeven</a></li>
+<li class="chapter" data-level="9.4" data-path="standaard-statistische-toetsen-voor-continue-data.html"><a href="standaard-statistische-toetsen-voor-continue-data.html#standaard-toetsen-voor-categorische-data"><i class="fa fa-check"></i><b>9.4</b> Standaard toetsen voor categorische data</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="standaard-statistische-toetsen-voor-continue-data.html"><a href="standaard-statistische-toetsen-voor-continue-data.html#een-steekproef-1"><i class="fa fa-check"></i><b>9.4.1</b> Een steekproef</a></li>
+<li class="chapter" data-level="9.4.2" data-path="standaard-statistische-toetsen-voor-continue-data.html"><a href="standaard-statistische-toetsen-voor-continue-data.html#twee-of-meer-onafhankelijke-steekproeven"><i class="fa fa-check"></i><b>9.4.2</b> Twee (of meer) onafhankelijke steekproeven</a></li>
+<li class="chapter" data-level="9.4.3" data-path="standaard-statistische-toetsen-voor-continue-data.html"><a href="standaard-statistische-toetsen-voor-continue-data.html#twee-afhankelijke-steekproeven."><i class="fa fa-check"></i><b>9.4.3</b> Twee afhankelijke steekproeven.</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="plaatjes.html"><a href="plaatjes.html"><i class="fa fa-check"></i><b>10</b> Plaatjes</a><ul>
+<li class="chapter" data-level="10.1" data-path="plaatjes.html"><a href="plaatjes.html#histogrammen"><i class="fa fa-check"></i><b>10.1</b> Histogrammen</a></li>
+<li class="chapter" data-level="10.2" data-path="plaatjes.html"><a href="plaatjes.html#circel--en-staafdiagrammen-en-dotcharts"><i class="fa fa-check"></i><b>10.2</b> Circel- en staafdiagrammen en dotcharts</a></li>
+<li class="chapter" data-level="10.3" data-path="plaatjes.html"><a href="plaatjes.html#algemene-elementen-van-figuren-in-r"><i class="fa fa-check"></i><b>10.3</b> Algemene elementen van figuren in R</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="plaatjes.html"><a href="plaatjes.html#col"><i class="fa fa-check"></i><b>10.3.1</b> col</a></li>
+<li class="chapter" data-level="10.3.2" data-path="plaatjes.html"><a href="plaatjes.html#pch"><i class="fa fa-check"></i><b>10.3.2</b> pch</a></li>
+<li class="chapter" data-level="10.3.3" data-path="plaatjes.html"><a href="plaatjes.html#cex"><i class="fa fa-check"></i><b>10.3.3</b> cex</a></li>
+<li class="chapter" data-level="10.3.4" data-path="plaatjes.html"><a href="plaatjes.html#lwd"><i class="fa fa-check"></i><b>10.3.4</b> lwd</a></li>
+<li class="chapter" data-level="10.3.5" data-path="plaatjes.html"><a href="plaatjes.html#lty"><i class="fa fa-check"></i><b>10.3.5</b> lty</a></li>
+<li class="chapter" data-level="10.3.6" data-path="plaatjes.html"><a href="plaatjes.html#xlim-ylim"><i class="fa fa-check"></i><b>10.3.6</b> xlim / ylim</a></li>
+<li class="chapter" data-level="10.3.7" data-path="plaatjes.html"><a href="plaatjes.html#xlab-ylab"><i class="fa fa-check"></i><b>10.3.7</b> xlab / ylab</a></li>
+<li class="chapter" data-level="10.3.8" data-path="plaatjes.html"><a href="plaatjes.html#main"><i class="fa fa-check"></i><b>10.3.8</b> main</a></li>
+<li class="chapter" data-level="10.3.9" data-path="plaatjes.html"><a href="plaatjes.html#mar"><i class="fa fa-check"></i><b>10.3.9</b> mar</a></li>
+<li class="chapter" data-level="10.3.10" data-path="plaatjes.html"><a href="plaatjes.html#mfow"><i class="fa fa-check"></i><b>10.3.10</b> mfow</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="plaatjes.html"><a href="plaatjes.html#lower-level-plot-functies"><i class="fa fa-check"></i><b>10.4</b> Lower-level plot functies</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="plaatjes.html"><a href="plaatjes.html#pointsx-y"><i class="fa fa-check"></i><b>10.4.1</b> points(x, y, …)</a></li>
+<li class="chapter" data-level="10.4.2" data-path="plaatjes.html"><a href="plaatjes.html#linesx-y"><i class="fa fa-check"></i><b>10.4.2</b> lines(x, y, …)</a></li>
+<li class="chapter" data-level="10.4.3" data-path="plaatjes.html"><a href="plaatjes.html#textx-y-labels"><i class="fa fa-check"></i><b>10.4.3</b> text(x, y, labels, …)</a></li>
+<li class="chapter" data-level="10.4.4" data-path="plaatjes.html"><a href="plaatjes.html#abline"><i class="fa fa-check"></i><b>10.4.4</b> abline(…)</a></li>
+<li class="chapter" data-level="10.4.5" data-path="plaatjes.html"><a href="plaatjes.html#legendx-y-legend"><i class="fa fa-check"></i><b>10.4.5</b> legend(x, y, legend, …)</a></li>
+<li class="chapter" data-level="10.4.6" data-path="plaatjes.html"><a href="plaatjes.html#titlemain-sub"><i class="fa fa-check"></i><b>10.4.6</b> title(main, sub, …)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="overzicht-functies.html"><a href="overzicht-functies.html"><i class="fa fa-check"></i><b>11</b> Overzicht functies</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="../default.aspx" target="_self">Back to Sharepoint site</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introductiecursus R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="standaard-statistische-toetsen-voor-continue-data" class="section level1">
+<h1><span class="header-section-number">Hoofdstuk9</span> Standaard statistische toetsen voor continue data</h1>
+<div id="een-steekproef" class="section level2">
+<h2><span class="header-section-number">9.1</span> Een steekproef</h2>
+<p>De meest eenvoudige situatie waarin we een statistische toets kunnen gebruiken is misschien die waarbij we een steekproef hebben uit een populatie waarvan we aannemen dat een variabele een normale verdeling heeft. We willen de nulhypothese toetsen dat het gemiddelde van deze variabele gelijk is aan een bepaalde waarde. Een voorbeeld is als we een steekproef hebben van een aantal kinderen met een bepaald syndroom. We willen toetsen of het gemiddelde IQ van de kinderen met dit syndroom afwijkt van dat van andere kinderen (dus van 100). De IQ scores die we gemeten hebben waren: 74, 87, 100, 75, 98, 74, 79, 103, 95 en 110.</p>
+<p>We willen de nulhypothese dat het gemiddelde 100 is toetsen met een alpha van 5%. Dat wil zeggen dat als de nulhypothese waar is er toch 5% kans is dat we de nulhypothese (onterecht) verwerpen. Eigenlijk zouden we er natuurlijk een statisticus moeten raadplegen om te kijken hoe groot de kans is om de nulhypothese te verwerpen als er wel een klinisch relevant verschil is maar daar gaan we nu niet op in. In R kunnen we de toets uitvoeren door middel van de <code>t.test</code> functie.</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" title="1">IQs&lt;-<span class="kw">c</span>(<span class="dv">74</span>, <span class="dv">87</span>, <span class="dv">100</span>, <span class="dv">75</span>, <span class="dv">98</span>, <span class="dv">74</span>, <span class="dv">79</span>, <span class="dv">103</span>, <span class="dv">95</span>, <span class="dv">110</span>)</a>
+<a class="sourceLine" id="cb112-2" title="2"><span class="kw">t.test</span>(IQs, <span class="dt">mu=</span><span class="dv">100</span>) </a></code></pre></div>
+<pre><code>## 
+## 	One Sample t-test
+## 
+## data:  IQs
+## t = -2.473, df = 9, p-value = 0.0354
+## alternative hypothesis: true mean is not equal to 100
+## 95 percent confidence interval:
+##  79.89508 99.10492
+## sample estimates:
+## mean of x 
+##      89.5</code></pre>
+<p>In de output zien we dat het gemiddelde IQ in de steekproef 89.5 was, een verschil van meer dan 10 punten ten opzichte van de referentiewaarde van 100 waarmee we vergeleken. De p-waarde is 0.035 en we kunnen de nulhypothese verwerpen. We zien dat het betrouwbaarheidsinterval loopt van 79.9 tot 99.1, onze schatting op basis van deze kleine steekproef is dus niet heel precies.</p>
+</div>
+<div id="twee-steekproeven" class="section level2">
+<h2><span class="header-section-number">9.2</span> Twee steekproeven</h2>
+<div id="ongepaarde-data" class="section level3">
+<h3><span class="header-section-number">9.2.1</span> Ongepaarde data</h3>
+<p>Waarschijnlijk is de meest voorkomende situatie waarin we een statistische toets gebruiken die waarbij we twee groepen hebben waartussen we een uitkomst willen vergelijken waarbij we aannemen dat deze bij benadering normaal verdeeld is. In deze situatie kunnen we de t-toets voor ongepaarde data gebruiken. Stel je bijvoorbeeld voor dat we een trial hebben waarin we een pijnscore tussen de twee armen van de trial vergelijken. We hebben hiervan een voorbeeld dataset gemaakt. We hebben deze opgeslagen in de <code>data.frame</code> <code>pain</code>. We kunnen de t-toets voor ongepaarde data uitvoeren met hetzelfde commando, <code>t.test</code>, als we eerder hebben gezien.
+<!-- data(pain, package='BST02R') --></p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" title="1"><span class="kw">library</span>(foreign)</a>
+<a class="sourceLine" id="cb114-2" title="2">pain &lt;-<span class="st"> </span><span class="kw">read.spss</span>(<span class="dt">file=</span><span class="st">&#39;data/pain.sav&#39;</span>, <span class="dt">to.data.frame=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## re-encoding from UTF-8</code></pre>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" title="1"><span class="kw">t.test</span>(painfu <span class="op">~</span><span class="st"> </span>treatm ,<span class="dt">data=</span>pain)</a></code></pre></div>
+<pre><code>## 
+## 	Welch Two Sample t-test
+## 
+## data:  painfu by treatm
+## t = 4.7809, df = 95.585, p-value = 6.32e-06
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##   9.040738 21.879262
+## sample estimates:
+## mean in group Placebo  mean in group Active 
+##                 49.72                 34.26</code></pre>
+<p>We zien in de uitvoer van R dat het gemiddelde pijnniveau 50 was in de placebogroep terwijl de gemiddelde pijn 34 was in de actieve groep. Als de nulhypothese dat het gemiddelde pijnniveau gelijk is waar zou zijn zou de kans een dergelijk verschil te vinden heel klein zijn zoals aangegeven wordt door de p-waarde. We verwerpen dus deze nulhypothese en concluderen dat de behandeling de pijn vermindert.</p>
+<p>We hebben hier de variant van de t-toets gebruikt waar we de aanname dat de variantie is beide groepen gelijk is niet hoeven te maken (dit wordt ook wel de Welch-toets genoemd). In de klassieke t-tets zoals deze in de meeste statistische leerboeken staat wordt deze aanname wel gemaakt. Wanneer we deze variant in R willen uitvoeren kunnen we dit aangeven met een extra argument <code>var.equal=TRUE</code> aan de functie <code>t-test</code>.</p>
+</div>
+<div id="gepaarde-data" class="section level3">
+<h3><span class="header-section-number">9.2.2</span> Gepaarde data</h3>
+<p>In ons voorbeeld zou het ook interessant zijn om te zien of de pijn bij de follow-up meting lager is dan die op de baseline. Dit kan echter niet met de t-toets zoals we die hierboven hebben besproken omdat de patiënten bij de follow-up dezelfde zijn als die bij de baseline meting. We hebben hier de t-toets nodig voor <em>gepaarde</em> data (Eigenlijk is dit gewoon een t-toets voor een steekproef toegepast op het verschil tussen de twee metingen). We passen de toets toe in de placebogroep.</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" title="1">data_placebo &lt;-<span class="st"> </span>pain[pain<span class="op">$</span>treatm<span class="op">==</span><span class="st">&#39;Placebo&#39;</span>,]</a>
+<a class="sourceLine" id="cb118-2" title="2"><span class="kw">with</span>(data_placebo, <span class="kw">t.test</span>(<span class="dt">x=</span>painbl, <span class="dt">y=</span>painfu))</a></code></pre></div>
+<pre><code>## 
+## 	Welch Two Sample t-test
+## 
+## data:  painbl and painfu
+## t = 2.1923, df = 97.941, p-value = 0.03072
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##   0.7148663 14.3651337
+## sample estimates:
+## mean of x mean of y 
+##     57.26     49.72</code></pre>
+<p>We zien dat de pijnscore is afgenomen met 7.5 punten, hetgeen statistisch significant is.</p>
+</div>
+</div>
+<div id="meer-dan-twee-steekproeven" class="section level2">
+<h2><span class="header-section-number">9.3</span> Meer dan twee steekproeven</h2>
+<p>De t-toets voor onafhankelijke steekproeven kan gegeneraliseerd worden om meer dan twee groepen te vergelijken. Dit noemen we ANOVA (ANalysis Of VAriance, oftewel variantieanalyse in het Nederlands). De nulhypothese die we toetsen is dat alle groepsgemiddelden gelijk zijn. Deze hypothese wordt getoetst door de variantie die er is in de gemiddelden van de groepen te vergelijken met de variantie binnen de groepen, vandaar de naam van de methode. Wanneer de nulhypothese niet waar is verwachten we dat de variantie in groepsgemiddelden relatief groet is.</p>
+<p>Laten we R gebruiken om te kijken of de baseline pijnscore verschilt tussen de verschillende etniciteiten:</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" title="1">anova_eth &lt;-<span class="st"> </span><span class="kw">aov</span>(painbl <span class="op">~</span><span class="st"> </span>race, <span class="dt">data=</span>pain)</a>
+<a class="sourceLine" id="cb120-2" title="2"><span class="kw">summary</span>(anova_eth)</a></code></pre></div>
+<pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)
+## race         2      9    4.63   0.018  0.982
+## Residuals   97  25171  259.49</code></pre>
+<p>Hier kunnen we de nulhypothese niet verwerpen;Er is geen bewijs dat de pijn bij aanvang verschilt tussen de etniciteiten.</p>
+</div>
+<div id="standaard-toetsen-voor-categorische-data" class="section level2">
+<h2><span class="header-section-number">9.4</span> Standaard toetsen voor categorische data</h2>
+<p>Wanneer de uitkomst categorisch is in plaats van continu kunnen we de bovenstaande toetsen niet gebruiken. Er zijn echter alternatieven.</p>
+<div id="een-steekproef-1" class="section level3">
+<h3><span class="header-section-number">9.4.1</span> Een steekproef</h3>
+<p>Stel dat we willen toetsen of de fractie mannen in onze trial gelijk is aan 0.5 (en dus gelijk aan die van vrouwen). In R kunnen we nu gebruik maken van de functie <code>prop.test(x, n, p)</code>. Hier is <code>x</code> het aantal ‘events’ (dat wil zeggen mannen), <code>n</code> is het totaal aantal personen in het onderzoek en <code>p</code> is de (vaste) proportie waarmee we de vergelijking maken.</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" title="1"><span class="co"># Kruistabel mken</span></a>
+<a class="sourceLine" id="cb122-2" title="2"><span class="kw">table</span>(pain<span class="op">$</span>sex)</a></code></pre></div>
+<pre><code>## 
+##   Male Female 
+##     70     30</code></pre>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" title="1"><span class="kw">prop.test</span>(<span class="kw">sum</span>(pain<span class="op">$</span>sex<span class="op">==</span><span class="st">&#39;Male&#39;</span>), <span class="dt">n=</span><span class="kw">NROW</span>(pain), <span class="dt">p =</span> <span class="fl">0.5</span>)</a></code></pre></div>
+<pre><code>## 
+## 	1-sample proportions test with continuity correction
+## 
+## data:  sum(pain$sex == &quot;Male&quot;) out of NROW(pain), null probability 0.5
+## X-squared = 15.21, df = 1, p-value = 9.619e-05
+## alternative hypothesis: true p is not equal to 0.5
+## 95 percent confidence interval:
+##  0.5989396 0.7854574
+## sample estimates:
+##   p 
+## 0.7</code></pre>
+<p>We zien aan de uitvoer dat 70% van de personen in ons onderzoek mannen zijn, het bijbehorende betrouwbaarheidsinterval loopt van 60% tot 79%. Het is dus duidelijk dat het percentage significant hoger ligt dan 50%. We krijgen hetzelfde resultaat door de functie <code>prop.test</code> toe te passen op de frequentietabel.</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" title="1"><span class="kw">prop.test</span>(<span class="kw">table</span>(pain<span class="op">$</span>sex))</a></code></pre></div>
+</div>
+<div id="twee-of-meer-onafhankelijke-steekproeven" class="section level3">
+<h3><span class="header-section-number">9.4.2</span> Twee (of meer) onafhankelijke steekproeven</h3>
+<p>We kunnen de functie <code>prop.test</code> ook gebruiken om een proportie te vergelijken tussen twee groepen. Dit wordt de chi-kwadraat toets genoemd. Laten we kijken of het percentage mannen gelijk is in de twee armen van de trial.</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" title="1">(tab &lt;-<span class="st"> </span><span class="kw">table</span>(pain<span class="op">$</span>treatm, pain<span class="op">$</span>sex))</a></code></pre></div>
+<pre><code>##          
+##           Male Female
+##   Placebo   34     16
+##   Active    36     14</code></pre>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" title="1"><span class="kw">prop.test</span>(tab)</a></code></pre></div>
+<pre><code>## 
+## 	2-sample test for equality of proportions with continuity correction
+## 
+## data:  tab
+## X-squared = 0.047619, df = 1, p-value = 0.8273
+## alternative hypothesis: two.sided
+## 95 percent confidence interval:
+##  -0.2394625  0.1594625
+## sample estimates:
+## prop 1 prop 2 
+##   0.68   0.72</code></pre>
+<p>Aan de output kunnen we zien dat het percentage mannen niet veel verschilt tussen de armen. We kunnen de nulhypothese van geen verschil hier dus niet verwerpen.</p>
+<p>Dezelfde toets kan ook worden toegepast wanneer we meer dan twee groepen hebben.</p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" title="1">(tab &lt;-<span class="st"> </span><span class="kw">table</span>(pain<span class="op">$</span>race, pain<span class="op">$</span>sex))</a></code></pre></div>
+<pre><code>##            
+##             Male Female
+##   Asian       11      3
+##   Black       10      3
+##   Caucasian   49     24</code></pre>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" title="1"><span class="kw">prop.test</span>(tab)</a></code></pre></div>
+<pre><code>## Warning in prop.test(tab): Chi-squared approximation may be incorrect</code></pre>
+<pre><code>## 
+## 	3-sample test for equality of proportions without continuity
+## 	correction
+## 
+## data:  tab
+## X-squared = 1.0742, df = 2, p-value = 0.5844
+## alternative hypothesis: two.sided
+## sample estimates:
+##    prop 1    prop 2    prop 3 
+## 0.7857143 0.7692308 0.6712329</code></pre>
+<p>In dit geval geeft R ons een waarschuwing. Dit komt omdat de (verwachte) aantallen in onze kruistabel hier erg laag zijn. Dit zorgt ervoor dat de benadering die gebruikt wordt voor de verdeling die de toetsingsgrootheid heeft onder de nulverdeling niet erg nauwkeurig is.</p>
+</div>
+<div id="twee-afhankelijke-steekproeven." class="section level3">
+<h3><span class="header-section-number">9.4.3</span> Twee afhankelijke steekproeven.</h3>
+<p>Wanneer we gepaarde proporties willen vergelijken kunnen we de McNemar toets toepassen. We gebruiken deze toets hier om te kijken of de fractie mensen met een pijnscore lager dan 50 verschilt tussen de baseline en de follow-upmeting.</p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" title="1">pain<span class="op">$</span>painbl50 &lt;-<span class="st"> </span>pain<span class="op">$</span>painbl <span class="op">&gt;</span><span class="st"> </span><span class="dv">50</span></a>
+<a class="sourceLine" id="cb136-2" title="2">pain<span class="op">$</span>painfu50 &lt;-<span class="st"> </span>pain<span class="op">$</span>painfu <span class="op">&gt;</span><span class="st"> </span><span class="dv">50</span></a>
+<a class="sourceLine" id="cb136-3" title="3"></a>
+<a class="sourceLine" id="cb136-4" title="4">(tab &lt;-<span class="st"> </span><span class="kw">table</span>(pain<span class="op">$</span>painbl50, pain<span class="op">$</span>painfu50))</a></code></pre></div>
+<pre><code>##        
+##         FALSE TRUE
+##   FALSE    27   12
+##   TRUE     37   24</code></pre>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" title="1"><span class="kw">mcnemar.test</span>(tab)</a></code></pre></div>
+<pre><code>## 
+## 	McNemar&#39;s Chi-squared test with continuity correction
+## 
+## data:  tab
+## McNemar&#39;s chi-squared = 11.755, df = 1, p-value = 0.0006068</code></pre>
+<p>In de McNemartoets wordt alleen naar de discordante paren gekeken. Dat wil zeggen dat de paren waarbij de uitkomst hetzelfde is worden niet benut. De vraag is of er meer mensen zijn die een hoge pijnscore hebben op baseline en niet bij de follow-up meting dan omgekeerd. Dit lijkt hier het geval te zijn en we kunnen de nulhypothese verwerpen dat deze proportie gelijk zou zijn.</p>
+<div class="figure">
+<img src="Flowchart.jpg" alt="Flowchart" />
+<p class="caption">Flowchart</p>
+</div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-frames-importeren.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="plaatjes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["RGynReader.pdf", "RGynReader.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
